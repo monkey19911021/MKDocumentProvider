@@ -13,7 +13,44 @@
 		FB0C9DC11D22512500E5DBF4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FB0C9DBF1D22512500E5DBF4 /* Main.storyboard */; };
 		FB0C9DC31D22512500E5DBF4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FB0C9DC21D22512500E5DBF4 /* Assets.xcassets */; };
 		FB0C9DC61D22512500E5DBF4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FB0C9DC41D22512500E5DBF4 /* LaunchScreen.storyboard */; };
+		FB0C9DD71D22517F00E5DBF4 /* DocumentPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB0C9DD61D22517F00E5DBF4 /* DocumentPickerViewController.m */; };
+		FB0C9DDA1D22517F00E5DBF4 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FB0C9DD81D22517F00E5DBF4 /* MainInterface.storyboard */; };
+		FB0C9DE61D22517F00E5DBF4 /* FileProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = FB0C9DE51D22517F00E5DBF4 /* FileProvider.m */; };
+		FB0C9DEA1D22517F00E5DBF4 /* MKDocumentProviderDemoFileProvider.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = FB0C9DE01D22517F00E5DBF4 /* MKDocumentProviderDemoFileProvider.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		FB0C9DED1D22517F00E5DBF4 /* MKDocumentProviderDemo.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = FB0C9DD11D22517F00E5DBF4 /* MKDocumentProviderDemo.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		FB0C9DE81D22517F00E5DBF4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FB0C9DAB1D22512500E5DBF4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FB0C9DDF1D22517F00E5DBF4;
+			remoteInfo = MKDocumentProviderDemoFileProvider;
+		};
+		FB0C9DEB1D22517F00E5DBF4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FB0C9DAB1D22512500E5DBF4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FB0C9DD01D22517F00E5DBF4;
+			remoteInfo = MKDocumentProviderDemo;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		FB0C9DF41D22517F00E5DBF4 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				FB0C9DEA1D22517F00E5DBF4 /* MKDocumentProviderDemoFileProvider.appex in Embed App Extensions */,
+				FB0C9DED1D22517F00E5DBF4 /* MKDocumentProviderDemo.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		FB0C9DB31D22512500E5DBF4 /* MKDocumentProvider.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MKDocumentProvider.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -26,10 +63,35 @@
 		FB0C9DC21D22512500E5DBF4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FB0C9DC51D22512500E5DBF4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FB0C9DC71D22512500E5DBF4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FB0C9DD11D22517F00E5DBF4 /* MKDocumentProviderDemo.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = MKDocumentProviderDemo.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		FB0C9DD41D22517F00E5DBF4 /* MKDocumentProviderDemo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = MKDocumentProviderDemo.entitlements; sourceTree = "<group>"; };
+		FB0C9DD51D22517F00E5DBF4 /* DocumentPickerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DocumentPickerViewController.h; sourceTree = "<group>"; };
+		FB0C9DD61D22517F00E5DBF4 /* DocumentPickerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DocumentPickerViewController.m; sourceTree = "<group>"; };
+		FB0C9DD91D22517F00E5DBF4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		FB0C9DDB1D22517F00E5DBF4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FB0C9DE01D22517F00E5DBF4 /* MKDocumentProviderDemoFileProvider.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = MKDocumentProviderDemoFileProvider.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		FB0C9DE31D22517F00E5DBF4 /* MKDocumentProviderDemoFileProvider.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = MKDocumentProviderDemoFileProvider.entitlements; sourceTree = "<group>"; };
+		FB0C9DE41D22517F00E5DBF4 /* FileProvider.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FileProvider.h; sourceTree = "<group>"; };
+		FB0C9DE51D22517F00E5DBF4 /* FileProvider.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FileProvider.m; sourceTree = "<group>"; };
+		FB0C9DE71D22517F00E5DBF4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		FB0C9DB01D22512500E5DBF4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FB0C9DCE1D22517F00E5DBF4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FB0C9DDD1D22517F00E5DBF4 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -43,6 +105,8 @@
 			isa = PBXGroup;
 			children = (
 				FB0C9DB51D22512500E5DBF4 /* MKDocumentProvider */,
+				FB0C9DD21D22517F00E5DBF4 /* MKDocumentProviderDemo */,
+				FB0C9DE11D22517F00E5DBF4 /* MKDocumentProviderDemoFileProvider */,
 				FB0C9DB41D22512500E5DBF4 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -51,6 +115,8 @@
 			isa = PBXGroup;
 			children = (
 				FB0C9DB31D22512500E5DBF4 /* MKDocumentProvider.app */,
+				FB0C9DD11D22517F00E5DBF4 /* MKDocumentProviderDemo.appex */,
+				FB0C9DE01D22517F00E5DBF4 /* MKDocumentProviderDemoFileProvider.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -79,6 +145,45 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		FB0C9DD21D22517F00E5DBF4 /* MKDocumentProviderDemo */ = {
+			isa = PBXGroup;
+			children = (
+				FB0C9DD51D22517F00E5DBF4 /* DocumentPickerViewController.h */,
+				FB0C9DD61D22517F00E5DBF4 /* DocumentPickerViewController.m */,
+				FB0C9DD81D22517F00E5DBF4 /* MainInterface.storyboard */,
+				FB0C9DDB1D22517F00E5DBF4 /* Info.plist */,
+				FB0C9DD31D22517F00E5DBF4 /* Supporting Files */,
+			);
+			path = MKDocumentProviderDemo;
+			sourceTree = "<group>";
+		};
+		FB0C9DD31D22517F00E5DBF4 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				FB0C9DD41D22517F00E5DBF4 /* MKDocumentProviderDemo.entitlements */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		FB0C9DE11D22517F00E5DBF4 /* MKDocumentProviderDemoFileProvider */ = {
+			isa = PBXGroup;
+			children = (
+				FB0C9DE41D22517F00E5DBF4 /* FileProvider.h */,
+				FB0C9DE51D22517F00E5DBF4 /* FileProvider.m */,
+				FB0C9DE71D22517F00E5DBF4 /* Info.plist */,
+				FB0C9DE21D22517F00E5DBF4 /* Supporting Files */,
+			);
+			path = MKDocumentProviderDemoFileProvider;
+			sourceTree = "<group>";
+		};
+		FB0C9DE21D22517F00E5DBF4 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				FB0C9DE31D22517F00E5DBF4 /* MKDocumentProviderDemoFileProvider.entitlements */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -89,15 +194,52 @@
 				FB0C9DAF1D22512500E5DBF4 /* Sources */,
 				FB0C9DB01D22512500E5DBF4 /* Frameworks */,
 				FB0C9DB11D22512500E5DBF4 /* Resources */,
+				FB0C9DF41D22517F00E5DBF4 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				FB0C9DE91D22517F00E5DBF4 /* PBXTargetDependency */,
+				FB0C9DEC1D22517F00E5DBF4 /* PBXTargetDependency */,
 			);
 			name = MKDocumentProvider;
 			productName = MKDocumentProvider;
 			productReference = FB0C9DB31D22512500E5DBF4 /* MKDocumentProvider.app */;
 			productType = "com.apple.product-type.application";
+		};
+		FB0C9DD01D22517F00E5DBF4 /* MKDocumentProviderDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FB0C9DF11D22517F00E5DBF4 /* Build configuration list for PBXNativeTarget "MKDocumentProviderDemo" */;
+			buildPhases = (
+				FB0C9DCD1D22517F00E5DBF4 /* Sources */,
+				FB0C9DCE1D22517F00E5DBF4 /* Frameworks */,
+				FB0C9DCF1D22517F00E5DBF4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MKDocumentProviderDemo;
+			productName = MKDocumentProviderDemo;
+			productReference = FB0C9DD11D22517F00E5DBF4 /* MKDocumentProviderDemo.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		FB0C9DDF1D22517F00E5DBF4 /* MKDocumentProviderDemoFileProvider */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FB0C9DEE1D22517F00E5DBF4 /* Build configuration list for PBXNativeTarget "MKDocumentProviderDemoFileProvider" */;
+			buildPhases = (
+				FB0C9DDC1D22517F00E5DBF4 /* Sources */,
+				FB0C9DDD1D22517F00E5DBF4 /* Frameworks */,
+				FB0C9DDE1D22517F00E5DBF4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MKDocumentProviderDemoFileProvider;
+			productName = MKDocumentProviderDemoFileProvider;
+			productReference = FB0C9DE01D22517F00E5DBF4 /* MKDocumentProviderDemoFileProvider.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -110,6 +252,14 @@
 				TargetAttributes = {
 					FB0C9DB21D22512500E5DBF4 = {
 						CreatedOnToolsVersion = 7.3.1;
+					};
+					FB0C9DD01D22517F00E5DBF4 = {
+						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = DM7XAFH5UF;
+					};
+					FB0C9DDF1D22517F00E5DBF4 = {
+						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = DM7XAFH5UF;
 					};
 				};
 			};
@@ -127,6 +277,8 @@
 			projectRoot = "";
 			targets = (
 				FB0C9DB21D22512500E5DBF4 /* MKDocumentProvider */,
+				FB0C9DD01D22517F00E5DBF4 /* MKDocumentProviderDemo */,
+				FB0C9DDF1D22517F00E5DBF4 /* MKDocumentProviderDemoFileProvider */,
 			);
 		};
 /* End PBXProject section */
@@ -139,6 +291,21 @@
 				FB0C9DC61D22512500E5DBF4 /* LaunchScreen.storyboard in Resources */,
 				FB0C9DC31D22512500E5DBF4 /* Assets.xcassets in Resources */,
 				FB0C9DC11D22512500E5DBF4 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FB0C9DCF1D22517F00E5DBF4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FB0C9DDA1D22517F00E5DBF4 /* MainInterface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FB0C9DDE1D22517F00E5DBF4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -155,7 +322,36 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		FB0C9DCD1D22517F00E5DBF4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FB0C9DD71D22517F00E5DBF4 /* DocumentPickerViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FB0C9DDC1D22517F00E5DBF4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FB0C9DE61D22517F00E5DBF4 /* FileProvider.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		FB0C9DE91D22517F00E5DBF4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FB0C9DDF1D22517F00E5DBF4 /* MKDocumentProviderDemoFileProvider */;
+			targetProxy = FB0C9DE81D22517F00E5DBF4 /* PBXContainerItemProxy */;
+		};
+		FB0C9DEC1D22517F00E5DBF4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FB0C9DD01D22517F00E5DBF4 /* MKDocumentProviderDemo */;
+			targetProxy = FB0C9DEB1D22517F00E5DBF4 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		FB0C9DBF1D22512500E5DBF4 /* Main.storyboard */ = {
@@ -172,6 +368,14 @@
 				FB0C9DC51D22512500E5DBF4 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		FB0C9DD81D22517F00E5DBF4 /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FB0C9DD91D22517F00E5DBF4 /* Base */,
+			);
+			name = MainInterface.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -281,6 +485,66 @@
 			};
 			name = Release;
 		};
+		FB0C9DEF1D22517F00E5DBF4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = MKDocumentProviderDemoFileProvider/MKDocumentProviderDemoFileProvider.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = MKDocumentProviderDemoFileProvider/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.donlinks.MKDocumentProvider.MKDocumentProviderDemoFileProvider;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		FB0C9DF01D22517F00E5DBF4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = MKDocumentProviderDemoFileProvider/MKDocumentProviderDemoFileProvider.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = MKDocumentProviderDemoFileProvider/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.donlinks.MKDocumentProvider.MKDocumentProviderDemoFileProvider;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		FB0C9DF21D22517F00E5DBF4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = MKDocumentProviderDemo/MKDocumentProviderDemo.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = MKDocumentProviderDemo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.donlinks.MKDocumentProvider.MKDocumentProviderDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		FB0C9DF31D22517F00E5DBF4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = MKDocumentProviderDemo/MKDocumentProviderDemo.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = MKDocumentProviderDemo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.donlinks.MKDocumentProvider.MKDocumentProviderDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -298,6 +562,22 @@
 			buildConfigurations = (
 				FB0C9DCB1D22512500E5DBF4 /* Debug */,
 				FB0C9DCC1D22512500E5DBF4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		FB0C9DEE1D22517F00E5DBF4 /* Build configuration list for PBXNativeTarget "MKDocumentProviderDemoFileProvider" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FB0C9DEF1D22517F00E5DBF4 /* Debug */,
+				FB0C9DF01D22517F00E5DBF4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		FB0C9DF11D22517F00E5DBF4 /* Build configuration list for PBXNativeTarget "MKDocumentProviderDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FB0C9DF21D22517F00E5DBF4 /* Debug */,
+				FB0C9DF31D22517F00E5DBF4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};
