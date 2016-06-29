@@ -17,20 +17,28 @@
                         <rect key="frame" x="0.0" y="0.0" width="350" height="400"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mym-YX-cEY">
-                                <rect key="frame" x="137" y="185" width="76" height="30"/>
-                                <state key="normal" title="Untitled.txt">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ZQ1-mg-mnP">
+                                <rect key="frame" x="0.0" y="0.0" width="350" height="400"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
-                                    <action selector="openDocument:" destination="J6p-g8-CHO" eventType="touchUpInside" id="HtB-86-uWI"/>
+                                    <outlet property="dataSource" destination="J6p-g8-CHO" id="dXz-Uj-bBr"/>
+                                    <outlet property="delegate" destination="J6p-g8-CHO" id="ScW-sF-GHb"/>
                                 </connections>
-                            </button>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ZQ1-mg-mnP" firstAttribute="leading" secondItem="Vdh-Gp-eV6" secondAttribute="leading" id="YXO-02-ElT"/>
+                            <constraint firstAttribute="trailing" secondItem="ZQ1-mg-mnP" secondAttribute="trailing" id="aoN-gt-s1q"/>
+                            <constraint firstItem="UQD-kz-Mfv" firstAttribute="top" secondItem="ZQ1-mg-mnP" secondAttribute="bottom" id="nGS-oO-H5X"/>
+                            <constraint firstItem="ZQ1-mg-mnP" firstAttribute="top" secondItem="Vdh-Gp-eV6" secondAttribute="top" id="r6Q-cm-OFM"/>
+                        </constraints>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="350" height="400"/>
+                    <connections>
+                        <outlet property="itemsTableView" destination="ZQ1-mg-mnP" id="jBy-0E-2mU"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UoZ-ya-W3e" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

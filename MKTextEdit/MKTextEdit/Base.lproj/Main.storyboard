@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="uYm-Tu-dO5">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="9My-Ng-81o">
+            <objects>
+                <viewController id="uYm-Tu-dO5" customClass="ViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="9NT-pZ-lJf"/>
+                        <viewControllerLayoutGuide type="bottom" id="GK1-D8-XSL"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="cGm-YJ-d2J">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N0N-ly-9UI">
+                                <rect key="frame" x="0.0" y="20" width="600" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="6UU-jG-dhw"/>
+                                </constraints>
+                                <items>
+                                    <barButtonItem title="打开" id="EhM-5d-juB">
+                                        <connections>
+                                            <action selector="open:" destination="uYm-Tu-dO5" id="hxL-bU-2zH"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="导入" id="M83-CF-eb1">
+                                        <connections>
+                                            <action selector="import:" destination="uYm-Tu-dO5" id="1Vx-4R-Fge"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="Move" id="TAW-Mu-eV9">
+                                        <connections>
+                                            <action selector="move:" destination="uYm-Tu-dO5" id="MOM-mR-MFX"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="Export" id="ERp-Qj-9zU">
+                                        <connections>
+                                            <action selector="export:" destination="uYm-Tu-dO5" id="PJ9-qe-p54"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="lx1-xU-sI7"/>
+                                    <barButtonItem title="Modify" id="cyv-WZ-26D">
+                                        <connections>
+                                            <action selector="modify:" destination="uYm-Tu-dO5" id="pBx-zd-Gib"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rct-NX-GyN">
+                                <rect key="frame" x="0.0" y="72" width="600" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="bxt-ah-EBl"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="DfG-em-aBD">
+                                <rect key="frame" x="0.0" y="101" width="600" height="186"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="186" id="zvy-FW-EIr"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="DfG-em-aBD" secondAttribute="trailing" id="4Sv-kO-ZhN"/>
+                            <constraint firstItem="rct-NX-GyN" firstAttribute="leading" secondItem="cGm-YJ-d2J" secondAttribute="leading" id="5Br-E4-sbh"/>
+                            <constraint firstItem="N0N-ly-9UI" firstAttribute="leading" secondItem="cGm-YJ-d2J" secondAttribute="leading" id="6XH-jp-bA8"/>
+                            <constraint firstItem="DfG-em-aBD" firstAttribute="leading" secondItem="cGm-YJ-d2J" secondAttribute="leading" id="9Yo-PU-wnR"/>
+                            <constraint firstAttribute="trailing" secondItem="N0N-ly-9UI" secondAttribute="trailing" id="Ape-3C-XFi"/>
+                            <constraint firstItem="DfG-em-aBD" firstAttribute="top" secondItem="rct-NX-GyN" secondAttribute="bottom" constant="8" id="Ets-Sg-W4W"/>
+                            <constraint firstAttribute="trailing" secondItem="rct-NX-GyN" secondAttribute="trailing" id="aoK-oF-XmI"/>
+                            <constraint firstItem="N0N-ly-9UI" firstAttribute="top" secondItem="cGm-YJ-d2J" secondAttribute="top" constant="20" id="tUN-xp-yUu"/>
+                            <constraint firstItem="rct-NX-GyN" firstAttribute="top" secondItem="N0N-ly-9UI" secondAttribute="bottom" constant="8" id="vqH-cu-aQI"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="contTextView" destination="DfG-em-aBD" id="LCv-SB-ywP"/>
+                        <outlet property="titleLabel" destination="rct-NX-GyN" id="al6-dK-5nc"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XOz-wp-1FL" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="674" y="450"/>
+        </scene>
+    </scenes>
+</document>
