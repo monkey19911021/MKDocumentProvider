@@ -49,18 +49,28 @@
     }
 }
 
+//文件保护，文件不存在则创建新文件
 - (void)startProvidingItemAtURL:(NSURL *)url completionHandler:(void (^)(NSError *))completionHandler {
-    // Should ensure that the actual file is in the position returned by URLForItemWithIdentifier:, then call the completion handler
     NSError* error = nil;
     __block NSError* fileError = nil;
-#if 0
-    NSData * fileData = [NSData data];
-    // TODO: get the contents of file at <url> from model
     
-    [self.fileCoordinator coordinateWritingItemAtURL:url options:0 error:&error byAccessor:^(NSURL *newURL) {
-        [fileData writeToURL:newURL options:0 error:&fileError];
+    NSFileManager *fileMgr = [NSFileManager defaultManager];
+    NSString *filePath = [url path];
+    if([fileMgr fileExistsAtPath:filePath]){ //1
+        
+        //文件已存在，返回
+        completionHandler(error);
+        return;
+        
+    }
+    
+    //文件不存在，创建新文件，并写入url
+    NSData *fileData = [@"新建文件：" dataUsingEncoding:NSUTF8StringEncoding]; //2
+    
+    [self.fileCoordinator coordinateWritingItemAtURL:url options:NSFileCoordinatorWritingForReplacing error:&error byAccessor:^(NSURL *newURL) {
+        [fileData writeToURL:newURL options:0 error:&fileError]; //3
     }];
-#endif
+
     if (error!=nil) {
         completionHandler(error);
     } else {

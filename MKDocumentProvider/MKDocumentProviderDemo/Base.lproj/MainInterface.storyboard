@@ -26,7 +26,7 @@
                                 </connections>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="ZQ1-mg-mnP" firstAttribute="leading" secondItem="Vdh-Gp-eV6" secondAttribute="leading" id="YXO-02-ElT"/>
                             <constraint firstAttribute="trailing" secondItem="ZQ1-mg-mnP" secondAttribute="trailing" id="aoN-gt-s1q"/>

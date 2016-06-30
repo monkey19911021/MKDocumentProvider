@@ -23,45 +23,58 @@
                                     <constraint firstAttribute="height" constant="44" id="6UU-jG-dhw"/>
                                 </constraints>
                                 <items>
+                                    <barButtonItem title="新建" id="z7Q-HD-Uwo">
+                                        <connections>
+                                            <action selector="newFile:" destination="uYm-Tu-dO5" id="SxJ-Hg-jF9"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="0GC-m5-C6S"/>
                                     <barButtonItem title="打开" id="EhM-5d-juB">
                                         <connections>
                                             <action selector="open:" destination="uYm-Tu-dO5" id="hxL-bU-2zH"/>
                                         </connections>
                                     </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="2k8-bP-jgH"/>
                                     <barButtonItem title="导入" id="M83-CF-eb1">
                                         <connections>
                                             <action selector="import:" destination="uYm-Tu-dO5" id="1Vx-4R-Fge"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem title="Move" id="TAW-Mu-eV9">
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="Eb0-Iw-OuT"/>
+                                    <barButtonItem enabled="NO" title="移动" id="TAW-Mu-eV9">
                                         <connections>
                                             <action selector="move:" destination="uYm-Tu-dO5" id="MOM-mR-MFX"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem title="Export" id="ERp-Qj-9zU">
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="SoL-X1-evF"/>
+                                    <barButtonItem enabled="NO" title="导出" id="ERp-Qj-9zU">
                                         <connections>
                                             <action selector="export:" destination="uYm-Tu-dO5" id="PJ9-qe-p54"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="lx1-xU-sI7"/>
-                                    <barButtonItem title="Modify" id="cyv-WZ-26D">
+                                    <barButtonItem enabled="NO" title="保存" id="cyv-WZ-26D">
                                         <connections>
                                             <action selector="modify:" destination="uYm-Tu-dO5" id="pBx-zd-Gib"/>
                                         </connections>
                                     </barButtonItem>
                                 </items>
                             </toolbar>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rct-NX-GyN">
-                                <rect key="frame" x="0.0" y="72" width="600" height="21"/>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="bkU-Kz-jAL">
+                                <rect key="frame" x="290" y="193" width="20" height="20"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="bxt-ah-EBl"/>
+                                    <constraint firstAttribute="height" constant="20" id="Pa1-LP-Xrb"/>
+                                    <constraint firstAttribute="width" constant="20" id="Web-TJ-Pxa"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                                <color key="color" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            </activityIndicatorView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WfL-0f-ukM">
+                                <rect key="frame" x="0.0" y="72" width="600" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="DfG-em-aBD">
-                                <rect key="frame" x="0.0" y="101" width="600" height="186"/>
+                                <rect key="frame" x="0.0" y="110" width="600" height="186"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="186" id="zvy-FW-EIr"/>
@@ -72,20 +85,26 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="bkU-Kz-jAL" firstAttribute="centerY" secondItem="DfG-em-aBD" secondAttribute="centerY" id="4L7-1J-Q68"/>
                             <constraint firstAttribute="trailing" secondItem="DfG-em-aBD" secondAttribute="trailing" id="4Sv-kO-ZhN"/>
-                            <constraint firstItem="rct-NX-GyN" firstAttribute="leading" secondItem="cGm-YJ-d2J" secondAttribute="leading" id="5Br-E4-sbh"/>
                             <constraint firstItem="N0N-ly-9UI" firstAttribute="leading" secondItem="cGm-YJ-d2J" secondAttribute="leading" id="6XH-jp-bA8"/>
+                            <constraint firstItem="DfG-em-aBD" firstAttribute="top" secondItem="WfL-0f-ukM" secondAttribute="bottom" constant="8" id="7gg-g4-pYo"/>
                             <constraint firstItem="DfG-em-aBD" firstAttribute="leading" secondItem="cGm-YJ-d2J" secondAttribute="leading" id="9Yo-PU-wnR"/>
                             <constraint firstAttribute="trailing" secondItem="N0N-ly-9UI" secondAttribute="trailing" id="Ape-3C-XFi"/>
-                            <constraint firstItem="DfG-em-aBD" firstAttribute="top" secondItem="rct-NX-GyN" secondAttribute="bottom" constant="8" id="Ets-Sg-W4W"/>
-                            <constraint firstAttribute="trailing" secondItem="rct-NX-GyN" secondAttribute="trailing" id="aoK-oF-XmI"/>
+                            <constraint firstAttribute="trailing" secondItem="WfL-0f-ukM" secondAttribute="trailing" id="ReG-f8-0kt"/>
+                            <constraint firstItem="bkU-Kz-jAL" firstAttribute="centerX" secondItem="DfG-em-aBD" secondAttribute="centerX" id="iit-qs-DgP"/>
+                            <constraint firstItem="WfL-0f-ukM" firstAttribute="leading" secondItem="cGm-YJ-d2J" secondAttribute="leading" id="kS0-CH-9nR"/>
+                            <constraint firstItem="WfL-0f-ukM" firstAttribute="top" secondItem="N0N-ly-9UI" secondAttribute="bottom" constant="8" id="r89-DX-jGb"/>
                             <constraint firstItem="N0N-ly-9UI" firstAttribute="top" secondItem="cGm-YJ-d2J" secondAttribute="top" constant="20" id="tUN-xp-yUu"/>
-                            <constraint firstItem="rct-NX-GyN" firstAttribute="top" secondItem="N0N-ly-9UI" secondAttribute="bottom" constant="8" id="vqH-cu-aQI"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="activityView" destination="bkU-Kz-jAL" id="J8F-GQ-h3Y"/>
                         <outlet property="contTextView" destination="DfG-em-aBD" id="LCv-SB-ywP"/>
-                        <outlet property="titleLabel" destination="rct-NX-GyN" id="al6-dK-5nc"/>
+                        <outlet property="exportBtnItem" destination="ERp-Qj-9zU" id="r6C-lT-vMy"/>
+                        <outlet property="moveBtnItem" destination="TAW-Mu-eV9" id="1Vd-Lp-HbH"/>
+                        <outlet property="saveBtnItem" destination="cyv-WZ-26D" id="lds-CH-s9U"/>
+                        <outlet property="titleTextField" destination="WfL-0f-ukM" id="ric-jR-cXk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XOz-wp-1FL" sceneMemberID="firstResponder"/>
