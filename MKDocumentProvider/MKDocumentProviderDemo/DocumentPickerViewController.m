@@ -41,7 +41,6 @@
 }
 
 -(void)prepareForPresentationInMode:(UIDocumentPickerMode)mode {
-    // TODO: present a view controller appropriate for picker mode here
     
     switch (mode) {
         case UIDocumentPickerModeImport:
@@ -60,7 +59,10 @@
             self.navigationItem.title = @"导出文件";
         }
             break;
-            
+        case UIDocumentPickerModeMoveToService:
+        {
+            self.navigationItem.title = @"移动文件";
+        }
         default:
             break;
     }
@@ -96,10 +98,17 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
-    if(self.documentPickerMode == UIDocumentPickerModeExportToService){
+    if(self.documentPickerMode == UIDocumentPickerModeExportToService ||
+       self.documentPickerMode == UIDocumentPickerModeMoveToService){
+        
+        NSString *btnTitle = @"导出到这里";
+        if(self.documentPickerMode == UIDocumentPickerModeMoveToService){
+            btnTitle = @"移动到这里";
+        }
+        
         UIView *tableFootView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 44)];
         UIButton *btn = [[UIButton alloc] initWithFrame:tableFootView.bounds];
-        [btn setTitle:@"导出到这里" forState:UIControlStateNormal];
+        [btn setTitle:btnTitle forState:UIControlStateNormal];
         [btn setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
         [btn addTarget:self action:@selector(exportFile) forControlEvents:UIControlEventTouchUpInside];
         [tableFootView addSubview:btn];
@@ -126,18 +135,57 @@
         NSError *error = nil;
         [fileCoordinator coordinateReadingItemAtURL:originalURL options:NSFileCoordinatorReadingWithoutChanges error:&error byAccessor:^(NSURL * _Nonnull newURL) {
             
-            NSData *data = [NSData dataWithContentsOfURL: newURL];
-            NSString *fileCont = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-            if([fileCont writeToFile:exportFilePath atomically:YES encoding:NSUTF8StringEncoding error:nil]){
-                [self dismissGrantingAccessToURL: [NSURL fileURLWithPath:exportFilePath]];
-            }else{
-                NSLog(@"保存失败");
-            }
+            [self saveFileFromURL:newURL toFileURL: [NSURL fileURLWithPath:exportFilePath]];
         }];
         
     }
     
     [originalURL stopAccessingSecurityScopedResource];
+}
+
+#pragma mark - saveFile
+- (void)saveFileFromURL:(NSURL *)fileURL toFileURL:(NSURL *)toFileURL
+{
+    NSString *fileName = [fileURL lastPathComponent];
+    
+    void (^saveBlock)(NSString *) = ^(NSString *newFileName){
+        NSString *fileCont = [NSString stringWithContentsOfURL:fileURL encoding:NSUTF8StringEncoding error:nil];
+        NSURL *saveURL = [toFileURL URLByDeletingLastPathComponent];
+        NSURL *newFileURL = [saveURL URLByAppendingPathComponent: newFileName];
+        if([fileCont writeToURL:newFileURL atomically:YES encoding:NSUTF8StringEncoding error:nil]){
+            [self dismissGrantingAccessToURL: newFileURL];
+        }else{
+            NSLog(@"保存失败");
+        }
+    };
+    
+    if([fileNamesArray containsObject:fileName]){
+        UIAlertController *alertCtrl = [UIAlertController alertControllerWithTitle:@"是否覆盖已有文件" message:nil preferredStyle:UIAlertControllerStyleAlert];
+        [alertCtrl addAction: [UIAlertAction actionWithTitle:@"覆盖" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            saveBlock(fileName);
+        }]];
+        
+        [alertCtrl addAction: [UIAlertAction actionWithTitle:@"更名保存" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            saveBlock([self getOneSuitableFileName:fileName index:2]);
+        }]];
+        [self presentViewController:alertCtrl animated:YES completion:nil];
+        
+        return;
+    }
+    
+    saveBlock(fileName);
+}
+
+- (NSString *)getOneSuitableFileName:(NSString *)originalName index:(NSInteger)index{
+    NSString *pathExtension = [originalName pathExtension];
+    NSString *fileNameNoExtension = [originalName stringByDeletingPathExtension];
+    fileNameNoExtension = [NSString stringWithFormat:@"%@(%@)", fileNameNoExtension, @(index)];
+    NSString *newFileName = [fileNameNoExtension stringByAppendingPathExtension: pathExtension];
+    if([fileNamesArray containsObject: newFileName]){
+        return [self getOneSuitableFileName:originalName index:index+1];
+    }else{
+        return newFileName;
+    }
 }
 
 @end

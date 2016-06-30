@@ -84,15 +84,13 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     NSString *docFilePath = [[self storagePath] stringByAppendingPathComponent: fileNamesArray[indexPath.row]];
+    NSString *fileContent = [[NSString alloc] initWithContentsOfFile:docFilePath encoding:NSUTF8StringEncoding error:nil];
     
     UIViewController *viewCtrl = [UIViewController new];
     
-    UIWebView *webView = [[UIWebView alloc] initWithFrame:viewCtrl.view.bounds];
-    [viewCtrl.view addSubview:webView];
-    [webView loadRequest:[NSURLRequest requestWithURL: [NSURL fileURLWithPath:docFilePath]]];
-    [webView sizeToFit];
-    webView.scalesPageToFit = YES;
-    [viewCtrl.view addSubview:webView];
+    UITextView *textView = [[UITextView alloc] initWithFrame:viewCtrl.view.bounds];
+    textView.text = fileContent;
+    [viewCtrl.view addSubview:textView];
     
     [self.navigationController pushViewController:viewCtrl animated:YES];
     

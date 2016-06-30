@@ -27,6 +27,8 @@
     
     NSString *currentFileName;
     UIDocumentPickerMode documentPickerMode;
+    
+    NSURL *lastURL;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -69,6 +71,7 @@
 
 #pragma mark - 移动文件
 - (IBAction)move:(id)sender {
+    [self modify:nil];
     NSURL *fileURL = [NSURL fileURLWithPath: [CachesFilePath stringByAppendingPathComponent: currentFileName]];
     UIDocumentPickerViewController *docCtrl = [[UIDocumentPickerViewController alloc] initWithURL:fileURL inMode:UIDocumentPickerModeMoveToService];
     docCtrl.delegate = self;
@@ -93,16 +96,25 @@
             [self deleteLocalCachesData:currentFileName];
             currentFileName = titleTextField.text;
         }
-        NSData *fileData = nil;
         NSString *content = contTextView.text;
-        if(content.length > 0){
-            fileData = [content dataUsingEncoding:NSUTF8StringEncoding];
-        }else{
-            fileData = [NSData data];
-        }
-        if([self saveLocalCachesData: fileData fileName: currentFileName]){
+        
+        if([self saveLocalCachesCont:content fileName: currentFileName]){
             NSLog(@"保存成功");
         }
+        
+        if(documentPickerMode == UIDocumentPickerModeOpen){
+            //打开模式下，保存在文件打开的地址
+            NSFileCoordinator *fileCoorDinator = [NSFileCoordinator new];
+            NSError *error = nil;
+            [fileCoorDinator coordinateWritingItemAtURL:lastURL options:NSFileCoordinatorWritingForReplacing error:&error byAccessor:^(NSURL * _Nonnull newURL) {
+                BOOL access = [newURL startAccessingSecurityScopedResource];
+                if(access && [content writeToURL:newURL atomically:YES encoding:NSUTF8StringEncoding error:nil]){
+                    NSLog(@"保存原文件成功");
+                }
+                [newURL stopAccessingSecurityScopedResource];
+            }];
+        }
+        
     }
     
 }
@@ -110,6 +122,7 @@
 #pragma mark - UIDocumentPickerDelegate
 -(void)documentPicker:(UIDocumentPickerViewController *)controller didPickDocumentAtURL:(NSURL *)url
 {
+    lastURL = url;
     [controller dismissViewControllerAnimated:YES completion:nil];
     switch (controller.documentPickerMode) {
         case UIDocumentPickerModeImport:
@@ -124,7 +137,9 @@
         }
             break;
         case UIDocumentPickerModeMoveToService:
-            
+        {
+            NSLog(@"移动到此位置：%@", url);
+        }
             break;
             
         default:
@@ -149,8 +164,7 @@
         NSString *contStr = [NSString stringWithContentsOfURL:newURL encoding:NSUTF8StringEncoding error:nil];
         
         //把数据保存在本地缓存
-        NSData *data = [NSData dataWithContentsOfURL:newURL];
-        [self saveLocalCachesData:data fileName: fileName];
+        [self saveLocalCachesCont:contStr fileName:fileName];
         
         currentFileName = fileName;
         titleTextField.text = fileName;
@@ -177,8 +191,7 @@
                                              NSString *contStr = [NSString stringWithContentsOfURL:newURL encoding:NSUTF8StringEncoding error:nil];
                                              
                                              //把数据保存在本地缓存
-                                             NSData *data = [NSData dataWithContentsOfURL:newURL];
-                                             [self saveLocalCachesData:data fileName: fileName];
+                                             [self saveLocalCachesCont:contStr fileName:fileName];
                                              
                                              currentFileName = fileName;
                                              titleTextField.text = fileName;
@@ -191,10 +204,10 @@
 }
 
 //把文件保存在本地缓存
-- (BOOL)saveLocalCachesData:(NSData *)data fileName:(NSString *)fileName
+- (BOOL)saveLocalCachesCont:(NSString *)cont fileName:(NSString *)fileName
 {
     NSString *filePath = [CachesFilePath stringByAppendingPathComponent: fileName];
-    return [data writeToFile:filePath atomically:YES];
+    return [cont writeToFile:filePath atomically:YES encoding:NSUTF8StringEncoding error:nil];
 }
 
 - (void)deleteLocalCachesData:(NSString *)fileName
