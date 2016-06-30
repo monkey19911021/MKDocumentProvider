@@ -129,7 +129,8 @@
     NSString *fileName = [originalURL lastPathComponent];
     NSString *exportFilePath = [storagePath stringByAppendingPathComponent: fileName];
     
-    BOOL access = [originalURL startAccessingSecurityScopedResource]; 
+    BOOL access = [originalURL startAccessingSecurityScopedResource];
+    
     if(access){
         NSFileCoordinator *fileCoordinator = [NSFileCoordinator new];
         NSError *error = nil;
