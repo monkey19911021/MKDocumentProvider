@@ -11,7 +11,7 @@
 //缓存文件路径
 #define CachesFilePath ([NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0])
 
-@interface ViewController ()<UIDocumentPickerDelegate>
+@interface ViewController ()<UIDocumentPickerDelegate, UIDocumentMenuDelegate>
 
 @end
 
@@ -49,8 +49,7 @@
 - (IBAction)open:(id)sender {
     titleTextField.enabled = NO;
     documentPickerMode = UIDocumentPickerModeOpen;
-    [self refreshBtnStatue];
-    [self presentDocumentPickerViewControllerWithDocumentTypes:@[@"public.text", @"public.content"]];
+    [self displayDocumentPickerWithURIs:@[@"public.text", @"public.content"]];
 }
 
 #pragma mark - 导入文件
@@ -58,33 +57,23 @@
     //导入情况下，导入的文件会放在应用的临时文件目录里
     titleTextField.enabled = NO;
     documentPickerMode = UIDocumentPickerModeImport;
-    [self refreshBtnStatue];
-    [self presentDocumentPickerViewControllerWithDocumentTypes:@[@"public.text", @"public.content"]];
-}
-
-- (void)presentDocumentPickerViewControllerWithDocumentTypes:(NSArray <NSString *>*)allowedUTIs{
-    UIDocumentPickerViewController *docCtrl = [[UIDocumentPickerViewController alloc] initWithDocumentTypes:allowedUTIs
-                                                                                                     inMode: documentPickerMode];
-    docCtrl.delegate = self;
-    [self presentViewController:docCtrl animated:YES completion:nil];
+    [self displayDocumentPickerWithURIs:@[@"public.text", @"public.content"]];
 }
 
 #pragma mark - 移动文件
 - (IBAction)move:(id)sender {
     [self modify:nil];
+    documentPickerMode = UIDocumentPickerModeMoveToService;
     NSURL *fileURL = [NSURL fileURLWithPath: [CachesFilePath stringByAppendingPathComponent: currentFileName]];
-    UIDocumentPickerViewController *docCtrl = [[UIDocumentPickerViewController alloc] initWithURL:fileURL inMode:UIDocumentPickerModeMoveToService];
-    docCtrl.delegate = self;
-    [self presentViewController:docCtrl animated:YES completion:nil];
+    [self displayDocumentPickerWithURL:fileURL];
 }
 
 #pragma mark - 导出文件
 - (IBAction)export:(id)sender {
     [self modify:nil];
+    documentPickerMode = UIDocumentPickerModeExportToService;
     NSURL *fileURL = [NSURL fileURLWithPath: [CachesFilePath stringByAppendingPathComponent: currentFileName]];
-    UIDocumentPickerViewController *docCtrl = [[UIDocumentPickerViewController alloc] initWithURL:fileURL inMode:UIDocumentPickerModeExportToService];
-    docCtrl.delegate = self;
-    [self presentViewController:docCtrl animated:YES completion:nil];
+    [self displayDocumentPickerWithURL:fileURL];
 }
 
 #pragma mark - 修改文件
@@ -119,6 +108,25 @@
     
 }
 
+- (void)displayDocumentPickerWithURL:(NSURL *)url {
+    UIDocumentMenuViewController *importMenu = [[UIDocumentMenuViewController alloc] initWithURL:url inMode:documentPickerMode];
+    importMenu.delegate = self;
+    [self presentViewController:importMenu animated:YES completion:nil];
+}
+
+- (void)displayDocumentPickerWithURIs:(NSArray *)UTIs {
+    UIDocumentMenuViewController *importMenu = [[UIDocumentMenuViewController alloc] initWithDocumentTypes:UTIs inMode:documentPickerMode];
+    importMenu.delegate = self;
+    [self presentViewController:importMenu animated:YES completion:nil];
+}
+
+#pragma mark - UIDocumentMenuDelegate
+-(void)documentMenu:(UIDocumentMenuViewController *)documentMenu didPickDocumentPicker:(UIDocumentPickerViewController *)documentPicker
+{
+    documentPicker.delegate = self;
+    [self presentViewController:documentPicker animated:YES completion:nil];
+}
+
 #pragma mark - UIDocumentPickerDelegate
 -(void)documentPicker:(UIDocumentPickerViewController *)controller didPickDocumentAtURL:(NSURL *)url
 {
@@ -126,10 +134,16 @@
     [controller dismissViewControllerAnimated:YES completion:nil];
     switch (controller.documentPickerMode) {
         case UIDocumentPickerModeImport:
+        {
+            [self refreshBtnStatue];
             [self importFile: url];
+        }
             break;
         case UIDocumentPickerModeOpen:
+        {
+            [self refreshBtnStatue];
             [self openFile: url];
+        }
             break;
         case UIDocumentPickerModeExportToService:
         {
