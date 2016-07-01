@@ -32,15 +32,18 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    [self.view bringSubviewToFront: activityView];
 }
 
 #pragma mark - 新建文件
 - (IBAction)newFile:(id)sender{
     titleTextField.enabled = YES;
+    
+    documentPickerMode = 0;
+    lastURL = nil;
+    
     currentFileName = @"新建文件.txt";
     titleTextField.text = currentFileName;
+    
     [titleTextField becomeFirstResponder];
     [self refreshBtnStatue];
 }
@@ -70,9 +73,12 @@
 
 #pragma mark - 导出文件
 - (IBAction)export:(id)sender {
+    //1. 保存缓存文件
     [self modify:nil];
     documentPickerMode = UIDocumentPickerModeExportToService;
     NSURL *fileURL = [NSURL fileURLWithPath: [CachesFilePath stringByAppendingPathComponent: currentFileName]];
+    
+    //2.打开文件选择器
     [self displayDocumentPickerWithURL:fileURL];
 }
 
@@ -93,13 +99,23 @@
         
         if(documentPickerMode == UIDocumentPickerModeOpen){
             //打开模式下，保存在文件打开的地址
+            //1.通过文件协调器写入文件
             NSFileCoordinator *fileCoorDinator = [NSFileCoordinator new];
             NSError *error = nil;
-            [fileCoorDinator coordinateWritingItemAtURL:lastURL options:NSFileCoordinatorWritingForReplacing error:&error byAccessor:^(NSURL * _Nonnull newURL) {
+            [fileCoorDinator coordinateWritingItemAtURL:lastURL
+                                                options:NSFileCoordinatorWritingForReplacing
+                                                  error:&error
+                                             byAccessor:^(NSURL * _Nonnull newURL) {
+                
+                //2.获取安全访问权限
                 BOOL access = [newURL startAccessingSecurityScopedResource];
+                
+                //3.写入数据
                 if(access && [content writeToURL:newURL atomically:YES encoding:NSUTF8StringEncoding error:nil]){
                     NSLog(@"保存原文件成功");
                 }
+                
+                //4.停止安全访问权限
                 [newURL stopAccessingSecurityScopedResource];
             }];
         }
@@ -114,7 +130,7 @@
     [self presentViewController:importMenu animated:YES completion:nil];
 }
 
-- (void)displayDocumentPickerWithURIs:(NSArray *)UTIs {
+- (void)displayDocumentPickerWithURIs:(NSArray<NSString *> *)UTIs {
     UIDocumentMenuViewController *importMenu = [[UIDocumentMenuViewController alloc] initWithDocumentTypes:UTIs inMode:documentPickerMode];
     importMenu.delegate = self;
     [self presentViewController:importMenu animated:YES completion:nil];
@@ -152,6 +168,7 @@
             break;
         case UIDocumentPickerModeMoveToService:
         {
+            //可以删除本地对应的文件
             NSLog(@"移动到此位置：%@", url);
         }
             break;
@@ -169,17 +186,20 @@
 - (void)importFile:(NSURL *)url
 {
     [activityView startAnimating];
-    //通过文件协调工具来得到新的文件地址，以此得到文件保护功能
+    
+    //1.通过文件协调工具来得到新的文件地址，以此得到文件保护功能
     NSFileCoordinator *fileCoordinator = [[NSFileCoordinator alloc] initWithFilePresenter:nil];
     [fileCoordinator coordinateReadingItemAtURL:url options:NSFileCoordinatorReadingWithoutChanges error:nil byAccessor:^(NSURL * _Nonnull newURL) {
         [activityView stopAnimating];
         
+        //2.直接读取文件
         NSString *fileName = [newURL lastPathComponent];
         NSString *contStr = [NSString stringWithContentsOfURL:newURL encoding:NSUTF8StringEncoding error:nil];
         
-        //把数据保存在本地缓存
+        //3.把数据保存在本地缓存
         [self saveLocalCachesCont:contStr fileName:fileName];
         
+        //4.显示数据
         currentFileName = fileName;
         titleTextField.text = fileName;
         contTextView.text = contStr;
@@ -189,10 +209,13 @@
 
 - (void)openFile:(NSURL *)url
 {
-    BOOL accessing = [url startAccessingSecurityScopedResource];//1.获取文件授权
+    //1.获取文件授权
+    BOOL accessing = [url startAccessingSecurityScopedResource];
     
     if(accessing){
         [activityView startAnimating];
+        
+        //2.通过文件协调器读取文件地址
         NSFileCoordinator *fileCoordinator = [[NSFileCoordinator alloc] initWithFilePresenter:nil];
         [fileCoordinator coordinateReadingItemAtURL:url
                                             options:NSFileCoordinatorReadingWithoutChanges
@@ -201,12 +224,14 @@
                                              
                                              [activityView stopAnimating];
                                              
+                                             //3.读取文件协调器提供的新地址里的数据
                                              NSString *fileName = [newURL lastPathComponent];
                                              NSString *contStr = [NSString stringWithContentsOfURL:newURL encoding:NSUTF8StringEncoding error:nil];
                                              
-                                             //把数据保存在本地缓存
+                                             //4.把数据保存在本地缓存
                                              [self saveLocalCachesCont:contStr fileName:fileName];
                                              
+                                             //5.显示数据
                                              currentFileName = fileName;
                                              titleTextField.text = fileName;
                                              contTextView.text = contStr;
@@ -214,7 +239,8 @@
         
     }
     
-    [url stopAccessingSecurityScopedResource];//2.停止授权
+    //6.停止授权
+    [url stopAccessingSecurityScopedResource];
 }
 
 //把文件保存在本地缓存

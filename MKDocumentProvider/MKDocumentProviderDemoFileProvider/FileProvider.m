@@ -57,11 +57,9 @@
     NSFileManager *fileMgr = [NSFileManager defaultManager];
     NSString *filePath = [url path];
     if([fileMgr fileExistsAtPath:filePath]){ //1
-        
         //文件已存在，返回
         completionHandler(error);
         return;
-        
     }
     
     //文件不存在，创建新文件，并写入url

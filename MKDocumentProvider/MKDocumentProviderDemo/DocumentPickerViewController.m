@@ -129,18 +129,22 @@
     NSString *fileName = [originalURL lastPathComponent];
     NSString *exportFilePath = [storagePath stringByAppendingPathComponent: fileName];
     
+    //1. 获取安全访问权限
     BOOL access = [originalURL startAccessingSecurityScopedResource];
     
     if(access){
+        //2. 通过文件协调器访问读取该文件
         NSFileCoordinator *fileCoordinator = [NSFileCoordinator new];
         NSError *error = nil;
         [fileCoordinator coordinateReadingItemAtURL:originalURL options:NSFileCoordinatorReadingWithoutChanges error:&error byAccessor:^(NSURL * _Nonnull newURL) {
             
+            //3.保存文件到共享容器
             [self saveFileFromURL:newURL toFileURL: [NSURL fileURLWithPath:exportFilePath]];
         }];
         
     }
     
+    //4. 停止安全访问权限
     [originalURL stopAccessingSecurityScopedResource];
 }
 

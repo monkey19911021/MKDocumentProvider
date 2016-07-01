@@ -616,6 +616,7 @@
 				FB0C9DCC1D22512500E5DBF4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		FB0C9DEE1D22517F00E5DBF4 /* Build configuration list for PBXNativeTarget "MKDocumentProviderDemoFileProvider" */ = {
 			isa = XCConfigurationList;
@@ -624,6 +625,7 @@
 				FB0C9DF01D22517F00E5DBF4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		FB0C9DF11D22517F00E5DBF4 /* Build configuration list for PBXNativeTarget "MKDocumentProviderDemo" */ = {
 			isa = XCConfigurationList;
@@ -632,6 +634,7 @@
 				FB0C9DF31D22517F00E5DBF4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

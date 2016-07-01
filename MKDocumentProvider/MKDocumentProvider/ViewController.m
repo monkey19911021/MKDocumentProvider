@@ -22,10 +22,14 @@
     NSArray<NSString *> *fileNamesArray;
 
     __weak IBOutlet UITableView *fileTableView;
+    
+    NSString *storagePath;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    storagePath = [self storagePath];
     
     //第一次启动先写入一些文件到共享容器
     [self writeFirstFileToShare];
@@ -33,15 +37,16 @@
     [self loadData];
 }
 
+#pragma mark - 获取共享容器文件夹路径
 - (NSString *)storagePath {
     NSURL *groupURL = [[NSFileManager defaultManager] containerURLForSecurityApplicationGroupIdentifier:APP_GROUP_ID];
     NSString *groupPath = [groupURL path];
-    NSString *storagePath = [groupPath stringByAppendingPathComponent:APP_FILE_NAME];
+    NSString *_storagePath = [groupPath stringByAppendingPathComponent:APP_FILE_NAME];
     NSFileManager *fileManager = [NSFileManager defaultManager];
-    if (![fileManager fileExistsAtPath:storagePath]) {
-        [fileManager createDirectoryAtPath:storagePath withIntermediateDirectories:NO attributes:nil error:nil];
+    if (![fileManager fileExistsAtPath:_storagePath]) {
+        [fileManager createDirectoryAtPath:_storagePath withIntermediateDirectories:NO attributes:nil error:nil];
     }
-    return storagePath;
+    return _storagePath;
 }
 
 - (void)writeFirstFileToShare{
@@ -54,14 +59,14 @@
         NSString *file1Cont = @"Hello every one. I'm M0nk1y. My site: http://mkapple.cn";
         NSString *file2Cont = @"new File2:";
         
-        [file1Cont writeToFile:[[self storagePath] stringByAppendingPathComponent:@"File1.text"] atomically:YES encoding:NSUTF8StringEncoding error:nil];
-        [file2Cont writeToFile:[[self storagePath] stringByAppendingPathComponent:@"File2.text"] atomically:YES encoding:NSUTF8StringEncoding error:nil];
+        [file1Cont writeToFile:[storagePath stringByAppendingPathComponent:@"File1.text"] atomically:YES encoding:NSUTF8StringEncoding error:nil];
+        [file2Cont writeToFile:[storagePath stringByAppendingPathComponent:@"File2.text"] atomically:YES encoding:NSUTF8StringEncoding error:nil];
     }
 }
 
 - (void)loadData
 {
-    fileNamesArray = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:[self storagePath] error:nil];
+    fileNamesArray = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:storagePath error:nil];
     [fileTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:CellIdentifier];
     [fileTableView reloadData];
 }
@@ -83,7 +88,7 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    NSString *docFilePath = [[self storagePath] stringByAppendingPathComponent: fileNamesArray[indexPath.row]];
+    NSString *docFilePath = [storagePath stringByAppendingPathComponent: fileNamesArray[indexPath.row]];
     NSString *fileContent = [[NSString alloc] initWithContentsOfFile:docFilePath encoding:NSUTF8StringEncoding error:nil];
     
     UIViewController *viewCtrl = [UIViewController new];
